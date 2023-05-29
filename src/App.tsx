@@ -7,7 +7,6 @@ import './App.css';
 
 import { ReactComponent as Logo } from './assets/logo.svg';
 import { ReactComponent as RotateIcon } from './assets/360.svg';
-import { ReactComponent as XIcon } from './assets/x.svg';
 import { ReactComponent as ShareIcon } from './assets/share.svg';
 import { ReactComponent as CameraIcon } from './assets/camera.svg';
 import { Canvas, Model } from './ui';

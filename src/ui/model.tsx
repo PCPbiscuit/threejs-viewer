@@ -16,7 +16,7 @@ export const Model = ({
     if (!enableRotation && ref.current && ref.current?.rotation?.y != 0)
       ref.current.rotation.y = 0;
   }, [enableRotation]);
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (enableRotation && ref.current) {
       ref.current.rotation.y += delta * 0.5;
     }
