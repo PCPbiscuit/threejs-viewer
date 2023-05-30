@@ -75,12 +75,6 @@ function App() {
                   }
                   // src={Model}
                   alt='A 3D shoes'
-                  style={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    zIndex: '100',
-                  }}
                 >
                   <button
                     slot='ar-button'
