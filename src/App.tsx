@@ -21,6 +21,7 @@ function App() {
   };
   return (
     <>
+      <ARButton />
       <Canvas
         rotate={allowRotation}
         ref={ref}
