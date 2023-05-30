@@ -35,10 +35,10 @@ function App() {
         />
       </Canvas>
       <main className='px-8 py-11 h-full bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
-        <div className='grid grid-cols-3 h-full'>
+        <div className='grid md:grid-cols-3 grid-cols-2 h-full'>
           <div
             className={clsx(
-              'flex flex-col justify-between col-span-2 text-black',
+              'flex flex-col justify-between md:col-span-2 text-black',
             )}
           >
             <Logo />
@@ -65,8 +65,11 @@ function App() {
                 </p>
               </div>
               <div className='font-bold cursor-pointer'>Купить на сайте </div>
-              <div className='w-40 h-40 bg-red-500 bg-opacity-50'>
-                <model-viewer src='https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'></model-viewer>
+              <div className='w-40 h-40 relative'>
+                <model-viewer
+                  src='https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
+                  className='absolute left-0 top-0 z-50 bg-red-600'
+                ></model-viewer>
               </div>
             </div>
             <div className='bg-white h-24 flex items-center justify-center space-x-6 rounded-xl'>
