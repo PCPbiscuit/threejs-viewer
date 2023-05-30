@@ -2,7 +2,7 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 import { useState, useRef } from 'react';
 import clsx from 'clsx';
-import { ModelViewerElement } from '@google/model-viewer/lib/model-viewer';
+// import { ModelViewerElement } from '@google/model-viewer/lib/model-viewer';
 
 import './App.css';
 
