@@ -2,6 +2,7 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 import { useState, useRef } from 'react';
 import clsx from 'clsx';
+import { VRButton, ARButton, XR, Controllers, Hands } from '@react-three/xr';
 
 import './App.css';
 
@@ -25,13 +26,21 @@ function App() {
         ref={ref}
         className='!fixed left-0 top-0 w-full h-full'
       >
-        <Model
+        <XR>
+          <Controllers />
+          <Hands />
+          <mesh>
+            <boxGeometry />
+            <meshBasicMaterial color='blue' />
+          </mesh>
+        </XR>
+        {/* <Model
           url={
             // 'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf'
             'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
           }
           enableRotation={allowRotation}
-        />
+        /> */}
       </Canvas>
       <main className='px-8 py-11 h-full bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
         <div className='grid grid-cols-3 h-full'>
@@ -64,6 +73,7 @@ function App() {
                 </p>
               </div>
               <div className='font-bold cursor-pointer'>Купить на сайте </div>
+              <ARButton />
             </div>
             <div className='bg-white h-24 flex items-center justify-center space-x-6 rounded-xl'>
               <div className='border border-[#dcdcdc] rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0'>
