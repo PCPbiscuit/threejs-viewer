@@ -27,13 +27,12 @@ function App() {
         ref={ref}
         // className='!fixed left-0 top-0 w-full h-full'
       >
-        <XR>
-          <Controllers />
-          <Hands />
+        <XR referenceSpace='local'>
           <mesh>
             <boxGeometry />
             <meshBasicMaterial color='blue' />
           </mesh>
+          <Controllers />
         </XR>
         {/* <Model
           url={
