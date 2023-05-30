@@ -2,7 +2,7 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 import { useState, useRef } from 'react';
 import clsx from 'clsx';
-import { VRButton, ARButton, XR, Controllers, Hands } from '@react-three/xr';
+import { ARButton, XR, Controllers, Hands } from '@react-three/xr';
 
 import './App.css';
 
@@ -10,7 +10,7 @@ import { ReactComponent as Logo } from './assets/logo.svg';
 import { ReactComponent as RotateIcon } from './assets/360.svg';
 import { ReactComponent as ShareIcon } from './assets/share.svg';
 import { ReactComponent as CameraIcon } from './assets/camera.svg';
-import { Canvas, Model } from './ui';
+import { Canvas } from './ui';
 
 function App() {
   const ref = useRef<OrbitControlsImpl>(null);
