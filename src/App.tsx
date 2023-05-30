@@ -2,7 +2,6 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 import { useState, useRef } from 'react';
 import clsx from 'clsx';
-// import { ModelViewerElement } from '@google/model-viewer/lib/model-viewer';
 
 import './App.css';
 
@@ -67,9 +66,15 @@ function App() {
               <div className='font-bold cursor-pointer'>Купить на сайте </div>
               <div className='w-40 h-40 relative'>
                 <model-viewer
+                  ar-modes='webxr'
+                  camera-controls
                   src='https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
                   className='absolute left-0 top-0 z-50 bg-red-600'
-                ></model-viewer>
+                >
+                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/* @ts-ignore */}
+                  <button slot='ar-button'>Activate AR</button>
+                </model-viewer>
               </div>
             </div>
             <div className='bg-white h-24 flex items-center justify-center space-x-6 rounded-xl'>
