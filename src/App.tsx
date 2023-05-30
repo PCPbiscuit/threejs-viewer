@@ -66,15 +66,35 @@ function App() {
               <div className='font-bold cursor-pointer'>Купить на сайте </div>
               <div className='w-40 h-40 relative'>
                 <model-viewer
-                  ar-modes='webxr scene-viewer quick-look'
+                  id='test'
                   ar
+                  ar-modes='webxr scene-viewer quick-look'
                   camera-controls
-                  src='https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
-                  className='absolute left-0 top-0 z-50 bg-red-600'
+                  src={
+                    'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
+                  }
+                  alt='A 3D shoes'
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    zIndex: '100',
+                  }}
                 >
-                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                  {/* @ts-ignore */}
-                  <button slot='ar-button'>Activate AR</button>
+                  <button
+                    slot='ar-button'
+                    style={{
+                      backgroundColor: 'black',
+                      color: 'white',
+                      borderRadius: '4px',
+                      border: 'none',
+                      position: 'absolute',
+                      top: '16px',
+                      right: '16px',
+                    }}
+                  >
+                    Activate AR
+                  </button>
                 </model-viewer>
               </div>
             </div>
