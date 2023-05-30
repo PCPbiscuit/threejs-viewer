@@ -70,9 +70,7 @@ function App() {
                   ar
                   ar-modes='webxr scene-viewer'
                   camera-controls
-                  src={
-                    'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
-                  }
+                  src={Model}
                   alt='A 3D shoes'
                   style={{
                     position: 'absolute',
