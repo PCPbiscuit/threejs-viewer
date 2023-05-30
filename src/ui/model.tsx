@@ -2,7 +2,7 @@ import type { PrimitiveProps } from '@react-three/fiber';
 
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 
 export const Model = ({
   url,
@@ -21,6 +21,9 @@ export const Model = ({
       ref.current.rotation.y += delta * 0.5;
     }
   });
-  const { scene } = useGLTF(url);
+  const model = useGLTF(url);
+  const scene = useMemo(() => {
+    return model.scene.clone();
+  }, [model]);
   return <primitive ref={ref} position={[-0.5, -0.5, 0]} object={scene} />;
 };

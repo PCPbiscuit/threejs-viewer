@@ -68,9 +68,12 @@ function App() {
                 <model-viewer
                   id='test'
                   ar
-                  ar-modes='webxr scene-viewer'
+                  ar-modes='webxr scene-viewer quick-look'
                   camera-controls
-                  src={Model}
+                  src={
+                    'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf'
+                  }
+                  // src={Model}
                   alt='A 3D shoes'
                   style={{
                     position: 'absolute',
