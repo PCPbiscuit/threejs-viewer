@@ -66,7 +66,8 @@ function App() {
               <div className='font-bold cursor-pointer'>Купить на сайте </div>
               <div className='w-40 h-40 relative'>
                 <model-viewer
-                  ar-modes='webxr'
+                  ar-modes='webxr quick-look'
+                  ar
                   camera-controls
                   src='https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
                   className='absolute left-0 top-0 z-50 bg-red-600'
