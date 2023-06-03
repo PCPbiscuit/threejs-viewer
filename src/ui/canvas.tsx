@@ -14,7 +14,7 @@ export const Canvas = forwardRef<
       camera={{ position: [0, 0, 5], fov: 30 }}
       {...props}
     >
-      <Environment preset='studio' />
+      <Environment files='/public/studio.hdr' />
       <ambientLight intensity={0.1} />
       {/* <directionalLight intensity={1} /> */}
       <group>{props.children}</group>
