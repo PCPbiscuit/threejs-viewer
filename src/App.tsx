@@ -68,14 +68,14 @@ function App() {
                 <model-viewer
                   id='test'
                   ar
-                  ar-modes='webxr scene-viewer quick-look'
+                  ar-modes='scene-viewer webxr'
                   camera-controls
                   src={
                     'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
                   }
                   alt='A 3D shoes'
                 >
-                  <button
+                  {/* <button
                     slot='ar-button'
                     style={{
                       backgroundColor: 'black',
@@ -88,7 +88,7 @@ function App() {
                     }}
                   >
                     Activate AR
-                  </button>
+                  </button> */}
                 </model-viewer>
               </div>
             </div>
