@@ -19,7 +19,7 @@ function App() {
     allowRotation && ref.current?.reset();
   };
   return (
-    <>
+    <div className='md:h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
       <Canvas
         rotate={allowRotation}
         ref={ref}
@@ -33,7 +33,7 @@ function App() {
           enableRotation={allowRotation}
         />
       </Canvas>
-      <main className='px-8 py-11 h-full bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
+      <main className='px-8 py-11 h-full '>
         <div className='grid md:grid-cols-3 grid-cols-2 h-full'>
           <div
             className={clsx(
@@ -108,7 +108,7 @@ function App() {
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 
