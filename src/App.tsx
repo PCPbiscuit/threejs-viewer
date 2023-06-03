@@ -23,7 +23,7 @@ function App() {
       <Canvas
         rotate={allowRotation}
         ref={ref}
-        className='!fixed left-0 top-0 w-full h-full'
+        className='!fixed left-0 top-0 w-screen h-full'
       >
         <Model
           url={
@@ -49,7 +49,7 @@ function App() {
             </div>
           </div>
           <div className={clsx('flex flex-col space-y-4 text-white z-10')}>
-            <div className='rounded-[14px] bg-white bg-opacity-10 h-full flex flex-col p-10 justify-between'>
+            <div className='rounded-[14px] bg-white bg-opacity-10 h-full flex flex-col md:p-10 p-4 justify-between'>
               <div>
                 <img
                   src='/shtule.png'
@@ -64,12 +64,13 @@ function App() {
                 </p>
               </div>
               <div className='font-bold cursor-pointer'>Купить на сайте </div>
-              <div className='w-40 h-40 relative'>
+              <div className='relative'>
                 <model-viewer
                   id='test'
                   ar
                   ar-modes='scene-viewer webxr'
                   camera-controls
+                  class='w-full h-10'
                   src={
                     'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
                   }
@@ -84,8 +85,8 @@ function App() {
                       borderRadius: '4px',
                       border: 'none',
                       position: 'absolute',
-                      top: '16px',
-                      right: '16px',
+                      top: '0px',
+                      left: '0',
                     }}
                   >
                     Activate AR
