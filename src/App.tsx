@@ -73,9 +73,10 @@ function App() {
                   src={
                     'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
                   }
+                  reveal='manual'
                   alt='A 3D shoes'
                 >
-                  {/* <button
+                  <button
                     slot='ar-button'
                     style={{
                       backgroundColor: 'black',
@@ -88,7 +89,7 @@ function App() {
                     }}
                   >
                     Activate AR
-                  </button> */}
+                  </button>
                 </model-viewer>
               </div>
             </div>
