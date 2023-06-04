@@ -11,13 +11,30 @@ import { ReactComponent as ShareIcon } from './assets/share.svg';
 import { ReactComponent as CameraIcon } from './assets/camera.svg';
 import { Canvas, Model } from './ui';
 
+const models = [
+  {
+    preview: '/girl.png',
+    model:
+      'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb',
+  },
+  {
+    preview: '/box.png',
+    model: 'https://lk.simple-ar.ru/uploads/products/file_3d_model/box.glb',
+  },
+];
+
 function App() {
   const ref = useRef<OrbitControlsImpl>(null);
   const [allowRotation, setAllowRotation] = useState(false);
+  const [currentModelIndex, setCurrentModelIndex] = useState(0);
   const handleAllowRotation = () => {
     setAllowRotation(!allowRotation);
     allowRotation && ref.current?.reset();
   };
+  const handleModel = (index: number) => () => {
+    setCurrentModelIndex(index);
+  };
+  console.log(models[currentModelIndex]);
   return (
     <div className='md:h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
       <Canvas
@@ -70,9 +87,10 @@ function App() {
                   ar
                   ar-modes='scene-viewer webxr'
                   camera-controls
-                  class='w-full h-10'
+                  class='w-full min-h-10'
                   src={
-                    'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
+                    // 'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
+                    models[currentModelIndex]?.model
                   }
                   reveal='manual'
                   alt='A 3D shoes'
@@ -91,6 +109,17 @@ function App() {
                   >
                     Activate AR
                   </button>
+                  <div className='w-full absolute bottom-0 overflow-hidden'>
+                    <div className='flex overflow-x-auto snap-mandatory scroll-smooth'>
+                      {models.map((model, index) => (
+                        <button
+                          className='flex border-none mr-2 bg-cover bg-no-repeat w-24 h-24 rounded-lg shrink-0 bg-center'
+                          onClick={handleModel(index)}
+                          style={{ backgroundImage: `url(${model.preview})` }}
+                        ></button>
+                      ))}
+                    </div>
+                  </div>
                 </model-viewer>
               </div>
             </div>
