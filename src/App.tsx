@@ -1,6 +1,6 @@
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 
 import './App.css';
@@ -34,13 +34,19 @@ function App() {
   const handleModel = (index: number) => () => {
     setCurrentModelIndex(index);
   };
-  console.log(models[currentModelIndex]);
+  useEffect(() => {
+    document
+      .querySelector('#slider')
+      ?.addEventListener('beforexrselect', (ev) => {
+        ev.preventDefault();
+      });
+  });
   return (
     <div className='md:h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
       <Canvas
         rotate={allowRotation}
         ref={ref}
-        className='!fixed left-0 top-0 w-screen h-full'
+        className='!fixed left-0 top-0 w-screen h-full hidden md:block'
       >
         <Model
           url={
@@ -51,7 +57,7 @@ function App() {
         />
       </Canvas>
       <main className='px-8 py-11 h-full '>
-        <div className='grid md:grid-cols-3 grid-cols-2 h-full'>
+        <div className='grid md:grid-cols-3 grid-cols-1 h-full'>
           <div
             className={clsx(
               'flex flex-col justify-between md:col-span-2 text-black',
@@ -87,7 +93,7 @@ function App() {
                   ar
                   // ar-modes='scene-viewer webxr'
                   camera-controls
-                  class='w-full min-h-10'
+                  class='w-full min-h-10 md:hidden'
                   src={
                     // 'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
                     models[currentModelIndex]?.model
@@ -109,7 +115,10 @@ function App() {
                   >
                     Activate AR
                   </button>
-                  <div className='w-full absolute bottom-0 overflow-hidden'>
+                  <div
+                    className='w-full absolute bottom-0 overflow-hidden'
+                    id='slider'
+                  >
                     <div className='flex overflow-x-auto snap-mandatory scroll-smooth'>
                       {models.map((model, index) => (
                         <button
