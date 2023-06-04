@@ -85,7 +85,7 @@ function App() {
                 <model-viewer
                   id='test'
                   ar
-                  ar-modes='scene-viewer webxr'
+                  // ar-modes='scene-viewer webxr'
                   camera-controls
                   class='w-full min-h-10'
                   src={
