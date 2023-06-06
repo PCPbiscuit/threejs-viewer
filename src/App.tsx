@@ -1,4 +1,4 @@
-import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+// import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 import { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
@@ -9,41 +9,44 @@ import { ReactComponent as Logo } from './assets/logo.svg';
 import { ReactComponent as RotateIcon } from './assets/360.svg';
 import { ReactComponent as ShareIcon } from './assets/share.svg';
 import { ReactComponent as CameraIcon } from './assets/camera.svg';
-import { Canvas, Model } from './ui';
+// import { Canvas, Model } from './ui';
 
 const models = [
   {
     preview: '/girl.png',
     model:
-      'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb',
+      'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf',
+    // 'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb',
   },
   {
     preview: '/box.png',
-    model: 'https://lk.simple-ar.ru/uploads/products/file_3d_model/box.glb',
+    model:
+      'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/old-korrigan/model.gltf',
+    // model: 'https://lk.simple-ar.ru/uploads/products/file_3d_model/box.glb',
   },
 ];
 
 function App() {
-  const ref = useRef<OrbitControlsImpl>(null);
-  const [allowRotation, setAllowRotation] = useState(false);
+  // const ref = useRef<OrbitControlsImpl>(null);
+  // const [allowRotation, setAllowRotation] = useState(false);
   const [currentModelIndex, setCurrentModelIndex] = useState(0);
-  const handleAllowRotation = () => {
-    setAllowRotation(!allowRotation);
-    allowRotation && ref.current?.reset();
-  };
+  // const handleAllowRotation = () => {
+  //   setAllowRotation(!allowRotation);
+  //   allowRotation && ref.current?.reset();
+  // };
   const handleModel = (index: number) => () => {
     setCurrentModelIndex(index);
   };
   useEffect(() => {
-    document
-      .querySelector('#slider')
-      ?.addEventListener('beforexrselect', (ev) => {
-        ev.preventDefault();
-      });
-  });
+    const slider = document.querySelector('#slider');
+    console.log(slider);
+    slider?.addEventListener('beforexrselect', (ev) => {
+      ev.preventDefault();
+    });
+  }, []);
   return (
     <div className='md:h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
-      <Canvas
+      {/* <Canvas
         rotate={allowRotation}
         ref={ref}
         className='!fixed left-0 top-0 w-screen h-full hidden md:block'
@@ -55,7 +58,7 @@ function App() {
           }
           enableRotation={allowRotation}
         />
-      </Canvas>
+      </Canvas> */}
       <main className='px-8 py-11 h-full '>
         <div className='grid md:grid-cols-3 grid-cols-1 h-full'>
           <div
@@ -94,10 +97,7 @@ function App() {
                   // ar-modes='scene-viewer webxr'
                   camera-controls
                   class='w-full min-h-10 md:hidden'
-                  src={
-                    // 'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
-                    models[currentModelIndex]?.model
-                  }
+                  src={models[currentModelIndex]?.model}
                   reveal='manual'
                   alt='A 3D shoes'
                 >
@@ -125,6 +125,7 @@ function App() {
                           className='flex border-none mr-2 bg-cover bg-no-repeat w-24 h-24 rounded-lg shrink-0 bg-center'
                           onClick={handleModel(index)}
                           style={{ backgroundImage: `url(${model.preview})` }}
+                          key={index}
                         ></button>
                       ))}
                     </div>
