@@ -1,12 +1,11 @@
 // import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 import './App.css';
 
 import { ReactComponent as Logo } from './assets/logo.svg';
-import { ReactComponent as RotateIcon } from './assets/360.svg';
 import { ReactComponent as ShareIcon } from './assets/share.svg';
 import { ReactComponent as CameraIcon } from './assets/camera.svg';
 // import { Canvas, Model } from './ui';
@@ -67,12 +66,12 @@ function App() {
             )}
           >
             <Logo />
-            <div
+            {/* <div
               className='w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center shrink-0 cursor-pointer hover:scale-105 transition-transform transform font-bold'
               onClick={handleAllowRotation}
             >
               {allowRotation ? 'R' : <RotateIcon />}
-            </div>
+            </div> */}
           </div>
           <div className={clsx('flex flex-col space-y-4 text-white z-10')}>
             <div className='rounded-[14px] bg-white bg-opacity-10 h-full flex flex-col md:p-10 p-4 justify-between'>
