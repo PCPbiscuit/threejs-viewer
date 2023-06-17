@@ -96,7 +96,7 @@ function App() {
                 <model-viewer
                   id='test'
                   ar
-                  // ar-modes='scene-viewer webxr quick-look'
+                  ar-modes='scene-viewer webxr quick-look'
                   camera-controls
                   class='w-full'
                   src={models[currentModelIndex]?.model}
