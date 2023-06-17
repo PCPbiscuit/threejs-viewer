@@ -1,4 +1,4 @@
-import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+// import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
@@ -6,10 +6,10 @@ import clsx from 'clsx';
 import './App.css';
 
 import { ReactComponent as Logo } from './assets/logo.svg';
-import { ReactComponent as RotateIcon } from './assets/360.svg';
+// import { ReactComponent as RotateIcon } from './assets/360.svg';
 import { ReactComponent as ShareIcon } from './assets/share.svg';
 import { ReactComponent as CameraIcon } from './assets/camera.svg';
-import { Canvas, Model } from './ui';
+// import { Canvas, Model } from './ui';
 
 const models = [
   {
