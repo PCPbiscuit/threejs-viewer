@@ -17,20 +17,24 @@ const models = [
     preview: '/hat.png',
     model:
       'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf',
+    title: 'Какой то текст',
   },
   {
     preview: '/old.png',
     model:
       'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/old-korrigan/model.gltf',
+    title: 'Какой то текст',
   },
   {
     preview: '/box.png',
     model: 'https://lk.simple-ar.ru/uploads/products/file_3d_model/box.glb',
+    title: 'Какой то текст',
   },
   {
     preview: '/girl.png',
     model:
       'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb',
+    title: 'Какой то текст',
   },
 ];
 
@@ -68,7 +72,7 @@ function App() {
     });
   }, []);
   return (
-    <div className='h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
+    <div className='md:h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
       {window.innerWidth >= 768 && (
         <Canvas
           rotate={allowRotation}
@@ -121,6 +125,14 @@ function App() {
                 Купить на сайте{' '}
               </div>
               <div className='relative'>
+                <div className='grid grid-cols-2 gap-4'>
+                  {models.map((model) => (
+                    <img
+                      src={model.preview}
+                      className='aspect-square object-cover'
+                    />
+                  ))}
+                </div>
                 <model-viewer
                   id='test'
                   ref={ref2}
@@ -142,20 +154,31 @@ function App() {
                       position: 'absolute',
                       top: '0px',
                       left: '0',
+                      display: 'none',
                     }}
                   >
                     Activate AR
                   </button>
                   {arStarted && (
-                    <div className='flex w-full absolute top-0 left-0 items-center justify-between space-x-4 p-10'>
-                      <Logo /> <FloraIcon />
-                    </div>
+                    <>
+                      <div className='flex w-full absolute top-0 left-0 items-center justify-between space-x-4 p-10'>
+                        <Logo /> <FloraIcon />
+                      </div>
+                      <div className='absolute w-full top-1/2 flex items-center justify-center -translate-y-1/2'>
+                        {models[currentModelIndex]?.title}
+                      </div>
+                    </>
                   )}
                   <div
                     className='w-full absolute bottom-0 overflow-hidden'
                     id='slider'
                   >
-                    <div className='flex overflow-x-auto snap-mandatory scroll-smooth'>
+                    <div
+                      className={clsx(
+                        'overflow-x-auto snap-mandatory scroll-smooth',
+                        arStarted ? 'flex' : 'hidden',
+                      )}
+                    >
                       {models.map((model, index) => (
                         <button
                           className='flex border-none mr-2 bg-cover bg-no-repeat w-24 h-24 rounded-lg shrink-0 bg-center'
