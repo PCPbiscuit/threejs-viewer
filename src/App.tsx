@@ -65,19 +65,21 @@ function App() {
   }, []);
   return (
     <div className='h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
-      <Canvas
-        rotate={allowRotation}
-        ref={ref}
-        className='!fixed left-0 top-0 w-screen h-full hidden md:block'
-      >
-        <Model
-          url={
-            // 'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf'
-            'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
-          }
-          enableRotation={allowRotation}
-        />
-      </Canvas>
+      {window.innerWidth >= 768 && (
+        <Canvas
+          rotate={allowRotation}
+          ref={ref}
+          className='!fixed left-0 top-0 w-screen h-full hidden md:block'
+        >
+          <Model
+            url={
+              // 'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf'
+              'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
+            }
+            enableRotation={allowRotation}
+          />
+        </Canvas>
+      )}
       <main className='px-8 py-11 h-full '>
         <div className='grid md:grid-cols-3 grid-cols-1 h-full'>
           <div
