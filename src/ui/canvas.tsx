@@ -11,7 +11,7 @@ export const Canvas = forwardRef<
   return (
     <Can
       className='fixed top-0 left-0'
-      camera={{ position: [0, 0, 5], fov: 30 }}
+      camera={{ position: [0, 0, 5], fov: 70 }}
       {...props}
     >
       <Environment files='/studio.hdr' />

@@ -14,27 +14,27 @@ import { Canvas, Model } from './ui';
 
 const models = [
   {
-    preview: '/hat.png',
+    preview: '/table.png',
     model:
-      'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf',
-    title: 'Какой то текст',
+      'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/table-wood/model.gltf',
+    title: 'Какой то текст table',
   },
   {
-    preview: '/old.png',
+    preview: '/chair.png',
     model:
-      'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/old-korrigan/model.gltf',
-    title: 'Какой то текст',
+      'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/chair-wood/model.gltf',
+    title: 'Какой то текст chair',
   },
   {
     preview: '/box.png',
     model: 'https://lk.simple-ar.ru/uploads/products/file_3d_model/box.glb',
-    title: 'Какой то текст',
+    title: 'Какой то текст box',
   },
   {
     preview: '/girl.png',
     model:
       'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb',
-    title: 'Какой то текст',
+    title: 'Какой то текст girl',
   },
 ];
 
@@ -80,10 +80,7 @@ function App() {
           className='!fixed left-0 top-0 w-screen h-full hidden md:block'
         >
           <Model
-            url={
-              // 'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf'
-              'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
-            }
+            url={models[currentModelIndex]?.model}
             enableRotation={allowRotation}
           />
         </Canvas>
@@ -107,7 +104,7 @@ function App() {
             <div className='flex items-center justify-between space-x-4'>
               <Logo /> <FloraIcon />
             </div>
-            <div className='rounded-[14px] bg-white bg-opacity-10 h-full flex flex-col md:p-10 p-4 justify-between'>
+            <div className='rounded-[14px] bg-white bg-opacity-10 h-full flex flex-col md:p-10 p-4 justify-between z-50'>
               <div className='hidden md:block'>
                 <img
                   src='/shtule.png'
@@ -125,11 +122,12 @@ function App() {
                 Купить на сайте{' '}
               </div>
               <div className='relative'>
-                <div className='grid grid-cols-2 gap-4'>
-                  {models.map((model) => (
+                <div className='grid grid-cols-2 gap-4 '>
+                  {models.map((model, i) => (
                     <img
                       src={model.preview}
                       className='aspect-square object-cover'
+                      onClick={handleModel(i)}
                     />
                   ))}
                 </div>
