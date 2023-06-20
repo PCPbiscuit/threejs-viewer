@@ -129,7 +129,7 @@ function App() {
                   camera-controls
                   class='w-full'
                   src={models[currentModelIndex]?.model}
-                  // reveal='manual'
+                  reveal={arStarted ? 'auto' : 'manual'}
                   alt='A 3D shoes'
                 >
                   <button
