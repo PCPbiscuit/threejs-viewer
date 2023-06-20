@@ -1,12 +1,16 @@
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+
 import { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 import './App.css';
 
 import { ReactComponent as Logo } from './assets/logo.svg';
+import { ReactComponent as RotateIcon } from './assets/360.svg';
 import { ReactComponent as ShareIcon } from './assets/share.svg';
 import { ReactComponent as CameraIcon } from './assets/camera.svg';
 import { ReactComponent as FloraIcon } from './assets/flora.svg';
+import { Canvas, Model } from './ui';
 
 const models = [
   {
@@ -33,7 +37,13 @@ const models = [
 function App() {
   const [currentModelIndex, setCurrentModelIndex] = useState(0);
   const [arStarted, setArStarted] = useState(false);
-  const ref2 = useRef(null);
+  const ref = useRef<OrbitControlsImpl>(null);
+  const ref2 = useRef<OrbitControlsImpl>(null);
+  const [allowRotation, setAllowRotation] = useState(false);
+  const handleAllowRotation = () => {
+    setAllowRotation(!allowRotation);
+    allowRotation && ref.current?.reset();
+  };
 
   const handleModel = (index: number) => () => {
     setCurrentModelIndex(index);
@@ -59,8 +69,36 @@ function App() {
   }, []);
   return (
     <div className='h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
+      {window.innerWidth >= 768 && (
+        <Canvas
+          rotate={allowRotation}
+          ref={ref}
+          className='!fixed left-0 top-0 w-screen h-full hidden md:block'
+        >
+          <Model
+            url={
+              // 'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/korrigan-hat/model.gltf'
+              'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb'
+            }
+            enableRotation={allowRotation}
+          />
+        </Canvas>
+      )}
       <main className='px-8 py-11 h-full '>
         <div className='grid md:grid-cols-3 grid-cols-1 h-full'>
+          <div
+            className={clsx(
+              'md:flex hidden flex-col justify-between md:col-span-2 text-black',
+            )}
+          >
+            <Logo />
+            <div
+              className='w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center shrink-0 cursor-pointer hover:scale-105 transition-transform transform font-bold'
+              onClick={handleAllowRotation}
+            >
+              {allowRotation ? 'R' : <RotateIcon />}
+            </div>
+          </div>
           <div className={clsx('flex flex-col space-y-4 text-white z-10')}>
             <div className='flex items-center justify-between space-x-4'>
               <Logo /> <FloraIcon />
@@ -87,7 +125,7 @@ function App() {
                   id='test'
                   ref={ref2}
                   ar
-                  // ar-modes='scene-viewer webxr quick-look'
+                  // ar-modes='scene-viewer webxr'
                   camera-controls
                   class='w-full'
                   src={models[currentModelIndex]?.model}
