@@ -1,15 +1,16 @@
-// import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 import './App.css';
 
 import { ReactComponent as Logo } from './assets/logo.svg';
-// import { ReactComponent as RotateIcon } from './assets/360.svg';
+import { ReactComponent as RotateIcon } from './assets/360.svg';
 import { ReactComponent as ShareIcon } from './assets/share.svg';
 import { ReactComponent as CameraIcon } from './assets/camera.svg';
-// import { Canvas, Model } from './ui';
+import { ReactComponent as FloraIcon } from './assets/flora.svg';
+import { Canvas, Model } from './ui';
 
 const models = [
   {
@@ -35,20 +36,36 @@ const models = [
 
 function App() {
   const [currentModelIndex, setCurrentModelIndex] = useState(0);
-
+  const [arStarted, setArStarted] = useState(false);
+  const ref = useRef<OrbitControlsImpl>(null);
+  const ref2 = useRef<OrbitControlsImpl>(null);
+  const [allowRotation, setAllowRotation] = useState(false);
+  const handleAllowRotation = () => {
+    setAllowRotation(!allowRotation);
+    allowRotation && ref.current?.reset();
+  };
   const handleModel = (index: number) => () => {
     setCurrentModelIndex(index);
   };
+  const activateAR = () => {
+    ref2.current?.activateAR();
+  };
   useEffect(() => {
     const slider = document.querySelector('#slider');
-    console.log(slider);
+    const viewer = document.querySelector('#test');
     slider?.addEventListener('beforexrselect', (ev) => {
       ev.preventDefault();
     });
+    viewer?.addEventListener('ar-status', (event) => {
+      console.log(event);
+      if (event.detail.status === 'session-started') {
+        setArStarted(true);
+      }
+    });
   }, []);
   return (
-    <div className='md:h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
-      {/* <Canvas
+    <div className='h-screen bg-gradient-to-r from-[#201B18] to-[#7C6C60]'>
+      <Canvas
         rotate={allowRotation}
         ref={ref}
         className='!fixed left-0 top-0 w-screen h-full hidden md:block'
@@ -60,7 +77,7 @@ function App() {
           }
           enableRotation={allowRotation}
         />
-      </Canvas> */}
+      </Canvas>
       <main className='px-8 py-11 h-full '>
         <div className='grid md:grid-cols-3 grid-cols-1 h-full'>
           <div
@@ -69,16 +86,19 @@ function App() {
             )}
           >
             <Logo />
-            {/* <div
+            <div
               className='w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center shrink-0 cursor-pointer hover:scale-105 transition-transform transform font-bold'
               onClick={handleAllowRotation}
             >
               {allowRotation ? 'R' : <RotateIcon />}
-            </div> */}
+            </div>
           </div>
           <div className={clsx('flex flex-col space-y-4 text-white z-10')}>
+            <div className='flex items-center justify-between space-x-4'>
+              <Logo /> <FloraIcon />
+            </div>
             <div className='rounded-[14px] bg-white bg-opacity-10 h-full flex flex-col md:p-10 p-4 justify-between'>
-              <div>
+              <div className='hidden md:block'>
                 <img
                   src='/shtule.png'
                   className='w-full rounded-lg overflow-hidden h-60 mb-6 object-cover'
@@ -91,16 +111,19 @@ function App() {
                   террасах и в публичных помещениях.
                 </p>
               </div>
-              <div className='font-bold cursor-pointer'>Купить на сайте </div>
+              <div className='font-bold cursor-pointer hidden md:block'>
+                Купить на сайте{' '}
+              </div>
               <div className='relative'>
                 <model-viewer
                   id='test'
+                  ref={ref2}
                   ar
-                  ar-modes='scene-viewer webxr quick-look'
+                  // ar-modes='scene-viewer webxr quick-look'
                   camera-controls
                   class='w-full'
                   src={models[currentModelIndex]?.model}
-                  // reveal='manual'
+                  reveal='manual'
                   alt='A 3D shoes'
                 >
                   <button
@@ -115,8 +138,13 @@ function App() {
                       left: '0',
                     }}
                   >
-                    Activate AR new
+                    Activate AR
                   </button>
+                  {arStarted && (
+                    <div className='flex w-full absolute top-0 left-0 items-center justify-between space-x-4'>
+                      <Logo /> <FloraIcon />
+                    </div>
+                  )}
                   <div
                     className='w-full absolute bottom-0 overflow-hidden'
                     id='slider'
@@ -135,7 +163,15 @@ function App() {
                 </model-viewer>
               </div>
             </div>
-            <div className='bg-white h-24 flex items-center justify-center space-x-6 rounded-xl'>
+            <div className='md:hidden flex flex-col space-y-2 text-sm'>
+              <button className='bg-white p-5 text-black'>
+                Открыть в мобильном приложении
+              </button>
+              <button className='bg-white bg-opacity-25 p-5'>
+                Открыть в браузере
+              </button>
+            </div>
+            <div className='bg-white h-24 md:flex hidden items-center justify-center space-x-6 rounded-xl'>
               <div className='border border-[#dcdcdc] rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0'>
                 <CameraIcon />
               </div>
@@ -145,6 +181,7 @@ function App() {
               {/* <div className='border border-[#dcdcdc] bg-red-600 rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0'>
                 <XIcon />
               </div> */}
+              d
             </div>
           </div>
         </div>
