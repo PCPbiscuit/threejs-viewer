@@ -52,6 +52,9 @@ function App() {
       if (event.detail.status === 'session-started') {
         setArStarted(true);
       }
+      if (event.detail.status === 'not-presenting') {
+        setArStarted(false);
+      }
     });
   }, []);
   return (
@@ -88,7 +91,7 @@ function App() {
                   camera-controls
                   class='w-full'
                   src={models[currentModelIndex]?.model}
-                  reveal='manual'
+                  // reveal='manual'
                   alt='A 3D shoes'
                 >
                   <button
@@ -132,7 +135,10 @@ function App() {
               <button className='bg-white p-5 text-black'>
                 Открыть в мобильном приложении
               </button>
-              <button className='bg-white bg-opacity-25 p-5'>
+              <button
+                className='bg-white bg-opacity-25 p-5'
+                onClick={activateAR}
+              >
                 Открыть в браузере
               </button>
             </div>
