@@ -145,7 +145,9 @@ function App() {
                   <span className='bg-[#FFAC0C21] rounded-full py-1 px-3 text-xs font-medium text-[#FF9E0C] w-fit'>
                     Группа
                   </span>
-                  <p className='font-medium text-lg mt-1.5'>Стулья DSW</p>
+                  <p className='font-medium text-lg mt-1.5 mb-5 text-black'>
+                    Стулья DSW
+                  </p>
                   <img
                     className='aspect-[5/4] w-full rounded-md'
                     src={models[0].preview}
