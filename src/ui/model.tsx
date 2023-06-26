@@ -18,7 +18,7 @@ export const Model = ({
   }, [enableRotation]);
   useFrame((_state, delta) => {
     if (enableRotation && ref.current) {
-      ref.current.rotation.y += delta * 0.5;
+      ref.current.rotation.y += delta * 1;
     }
   });
   const model = useGLTF(url);

@@ -12,6 +12,7 @@ import { ReactComponent as CameraIcon } from './assets/camera.svg';
 import { ReactComponent as FloraIcon } from './assets/flora.svg';
 import { ReactComponent as PhoneIcon } from './assets/phone.svg';
 import { ReactComponent as WebIcon } from './assets/web.svg';
+import { ReactComponent as MailIcon } from './assets/mail.svg';
 import { Canvas, Model } from './ui';
 
 const models = [
@@ -124,22 +125,55 @@ function App() {
               </div>
             </div>
             <div className='rounded-[14px] bg-white md:bg-opacity-10 h-full flex flex-col md:p-10 p-6 justify-between z-50'>
-              <div className='hidden md:block'>
+              <div className='hidden md:flex flex-col h-full'>
+                <div className='flex items-center space-x-3 mb-6'>
+                  <div className='py-2.5 bg-white text-black px-2 aspect-square flex-col space-y-1 rounded-full items-ceter flex justify-center border border-[#DCDCDC]'>
+                    <img
+                      src='/flora.png'
+                      width='32px'
+                      height='28px'
+                      className='object-cover self-center w-8'
+                    />
+                    <span className='text-[10px]'>АРТФЛОРА</span>
+                  </div>
+                  <div className='flex flex-col space-y-1 font-medium '>
+                    <span className='text-xs text-opacity-50 text-white'>
+                      Продавец
+                    </span>
+                    <span className='text-xl'>Артфлора</span>
+                  </div>
+                </div>
                 <img
                   src='/shtule.png'
                   className='w-full rounded-lg overflow-hidden h-60 mb-6 object-cover'
                 />
                 <h2 className='font-bold text-lg mb-5'>Стул Style DSW серый</h2>
-                <p className='font-medium'>
+                <p className='text-sm leading-relaxed'>
                   Знаменитый образец современного дизайна в стиле минимализм.
                   Дизайнеры и декораторы с неизменным успехом используют стул
                   DSW в гостиных, кухнях, кабинетах, детских комнатах, на
                   террасах и в публичных помещениях.
                 </p>
+                <div className='flex flex-col space-y-5 mt-6'>
+                  <a
+                    href='tel:+74957990960'
+                    className='flex items-center space-x-1.5'
+                  >
+                    <PhoneIcon />
+                    <span>+7 (495) 799‑09‑60</span>
+                  </a>
+                  <a
+                    className='flex items-center space-x-1.5'
+                    href='mailto:artflora@info.ru'
+                  >
+                    <MailIcon />
+                    <span>artflora@info.ru</span>
+                  </a>
+                </div>
               </div>
-              <div className='font-bold cursor-pointer hidden md:block'>
-                Купить на сайте
-              </div>
+              <button className='bg-white p-4 md:flex hidden items-center text-black justify-center'>
+                <span>Перейти в интернет-магазин</span>
+              </button>
               <div className='relative md:hidden'>
                 <div className='flex flex-col'>
                   <span className='bg-[#FFAC0C21] rounded-full py-1 px-3 text-xs font-medium text-[#FF9E0C] w-fit'>
@@ -182,9 +216,9 @@ function App() {
                   {arStarted && (
                     <>
                       <div className='flex w-full absolute top-0 left-0 items-center justify-between space-x-4 p-10'>
-                        <Logo className='text-white' /> <FloraIcon />
+                        <FloraIcon />
                       </div>
-                      <div className='absolute w-full top-1/2 flex items-center justify-center -translate-y-1/2'>
+                      <div className='absolute w-full top-2/3 flex items-center justify-center -translate-y-1/2'>
                         {models[currentModelIndex]?.title}
                       </div>
                     </>
