@@ -19,24 +19,24 @@ const models = [
     preview: '/table.png',
     model:
       'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/table-wood/model.gltf',
-    title: 'Какой то текст table',
+    title: 'table',
   },
   {
     preview: '/chair.png',
     model:
       'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/chair-wood/model.gltf',
-    title: 'Какой то текст chair',
+    title: 'chair',
   },
   {
     preview: '/box.png',
     model: 'https://lk.simple-ar.ru/uploads/products/file_3d_model/box.glb',
-    title: 'Какой то текст box',
+    title: 'box',
   },
   {
     preview: '/girl.png',
     model:
       'https://lk.simple-ar.ru/uploads/products/bundle_file_webgl/lp_girl_gltf_01.glb',
-    title: 'Какой то текст girl',
+    title: 'girl',
   },
 ];
 
@@ -217,9 +217,9 @@ export const Home = () => {
                       <div className='flex w-full absolute top-0 left-0 items-center justify-between space-x-4 p-10'>
                         <FloraIcon />
                       </div>
-                      <div className='absolute text-[#745CF6] text-lg font-semibold decoration-current decoration-solid w-full top-2/3 flex items-center justify-center -translate-y-1/2'>
+                      <div className='absolute text-[#745CF6] text-lg font-semibold decoration-current !decoration-solid w-full top-2/3 flex items-center justify-center -translate-y-1/2'>
                         <Link to='/product'>
-                          {models[currentModelIndex]?.title}
+                          ссылка {models[currentModelIndex]?.title}
                         </Link>
                       </div>
                     </>
