@@ -153,6 +153,7 @@ export const Home = () => {
                   DSW в гостиных, кухнях, кабинетах, детских комнатах, на
                   террасах и в публичных помещениях.
                 </p>
+                <div className='text-2xl font-semibold mt-10'>2 400 руб.</div>
                 <div className='flex flex-col space-y-5 mt-6'>
                   <a
                     href='tel:+74957990960'
