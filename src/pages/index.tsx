@@ -1,6 +1,7 @@
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { ReactComponent as Logo } from '../assets/logo.svg';
@@ -217,7 +218,9 @@ export const Home = () => {
                         <FloraIcon />
                       </div>
                       <div className='absolute w-full top-2/3 flex items-center justify-center -translate-y-1/2'>
-                        {models[currentModelIndex]?.title}
+                        <Link to='/product'>
+                          {models[currentModelIndex]?.title}
+                        </Link>
                       </div>
                     </>
                   )}
