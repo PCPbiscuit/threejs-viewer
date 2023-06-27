@@ -3,6 +3,7 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import QRCode from 'react-qr-code';
 
 import { ReactComponent as Logo } from '../assets/logo.svg';
 import { ReactComponent as RotateIcon } from '../assets/360.svg';
@@ -41,6 +42,7 @@ const models = [
 ];
 
 export const Home = () => {
+  const [showQr, setShowQr] = useState(false);
   const [currentModelIndex, setCurrentModelIndex] = useState(0);
   const [arStarted, setArStarted] = useState(false);
   const ref = useRef<OrbitControlsImpl>(null);
@@ -49,6 +51,9 @@ export const Home = () => {
   const handleAllowRotation = () => {
     setAllowRotation(!allowRotation);
     allowRotation && ref.current?.reset();
+  };
+  const handleQr = (value: boolean) => () => {
+    setShowQr(value);
   };
 
   const handleModel = (index: number) => () => {
@@ -171,7 +176,7 @@ export const Home = () => {
                   </a>
                 </div>
               </div>
-              <button className='bg-white p-4 md:flex hidden items-center text-black justify-center'>
+              <button className='bg-white p-4 md:flex hidden items-center rounded-md text-black justify-center'>
                 <span>Перейти в интернет-магазин</span>
               </button>
               <div className='relative md:hidden'>
@@ -264,9 +269,32 @@ export const Home = () => {
               <div className='border border-[#dcdcdc] rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0'>
                 <CameraIcon />
               </div>
-              <div className='border border-[#dcdcdc] rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0'>
+              <button
+                onFocus={handleQr(true)}
+                onBlur={handleQr(false)}
+                className='border border-[#dcdcdc] rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0 relative'
+              >
                 <ShareIcon />
-              </div>
+                <dialog
+                  className='-translate-y-full -translate-x-8 z-50 bg-white'
+                  open={showQr}
+                >
+                  <div className='w-24 max-w-[96px]'>
+                    <QRCode
+                      size={256}
+                      style={{
+                        height: 'auto',
+                        maxWidth: '100%',
+                        width: '100%',
+                      }}
+                      value={
+                        'https://threejs-viewer-git-feature-slides-pcpbiscuit.vercel.app/'
+                      }
+                      viewBox={`0 0 256 256`}
+                    />
+                  </div>
+                </dialog>
+              </button>
               {/* <div className='border border-[#dcdcdc] bg-red-600 rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0'>
                   <XIcon />
                 </div> */}
