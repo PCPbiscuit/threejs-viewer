@@ -217,7 +217,7 @@ export const Home = () => {
                       <div className='flex w-full absolute top-0 left-0 items-center justify-between space-x-4 p-10'>
                         <FloraIcon />
                       </div>
-                      <div className='absolute w-full top-2/3 flex items-center justify-center -translate-y-1/2'>
+                      <div className='absolute text-[#745CF6] text-lg font-semibold decoration-current decoration-solid w-full top-2/3 flex items-center justify-center -translate-y-1/2'>
                         <Link to='/product'>
                           {models[currentModelIndex]?.title}
                         </Link>
