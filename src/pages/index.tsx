@@ -13,7 +13,7 @@ import { ReactComponent as FloraIcon } from '../assets/flora.svg';
 import { ReactComponent as PhoneIcon } from '../assets/phone.svg';
 import { ReactComponent as WebIcon } from '../assets/web.svg';
 import { ReactComponent as MailIcon } from '../assets/mail.svg';
-import { Canvas, Model } from '../ui';
+import { Canvas, Model, Popover, PopoverContent, PopoverTrigger } from '../ui';
 
 const models = [
   {
@@ -42,7 +42,6 @@ const models = [
 ];
 
 export const Home = () => {
-  const [showQr, setShowQr] = useState(false);
   const [currentModelIndex, setCurrentModelIndex] = useState(0);
   const [arStarted, setArStarted] = useState(false);
   const ref = useRef<OrbitControlsImpl>(null);
@@ -269,16 +268,13 @@ export const Home = () => {
               <div className='border border-[#dcdcdc] rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0'>
                 <CameraIcon />
               </div>
-              <button
-                onFocus={handleQr(true)}
-                onBlur={handleQr(false)}
-                className='border border-[#dcdcdc] rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0 relative'
-              >
-                <ShareIcon />
-                <dialog
-                  className='-translate-y-full -translate-x-8 z-50 bg-white'
-                  open={showQr}
-                >
+              <Popover>
+                <PopoverTrigger>
+                  <button className='border border-[#dcdcdc] rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0 relative'>
+                    <ShareIcon />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent>
                   <div className='w-24 max-w-[96px]'>
                     <QRCode
                       size={256}
@@ -293,8 +289,8 @@ export const Home = () => {
                       viewBox={`0 0 256 256`}
                     />
                   </div>
-                </dialog>
-              </button>
+                </PopoverContent>
+              </Popover>
               {/* <div className='border border-[#dcdcdc] bg-red-600 rounded-full h-[60px] w-[60px] flex items-center justify-center shrink-0'>
                   <XIcon />
                 </div> */}
